@@ -2,7 +2,7 @@ import { Button } from "./ui/button";
 import { motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import haleLogo from "@/assets/hale-logo.jpg.asset.json";
+import haleLogo from "@/assets/hale-logo.png.asset.json";
 import { BRAND_NAME } from "@/config/brand";
 
 interface NavbarProps {
@@ -41,7 +41,7 @@ export function Navbar({ onBookingClick }: NavbarProps) {
           <img 
             src={haleLogo.url} 
             alt={BRAND_NAME}
-            className="h-[38px] w-auto md:h-[54px] m-[10px] rounded" 
+            className="h-[48px] w-auto md:h-[64px]" 
             fetchPriority="high" decoding="async"/>
         </a>
 
