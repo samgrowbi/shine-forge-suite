@@ -147,7 +147,7 @@ function TestimonialCard({ item, isPlaying, onPlay, onPause }: TestimonialCardPr
           <img
             src={item.poster}
             alt={item.name}
-            loading="lazy"
+            loading="lazy" decoding="async"
             className="absolute inset-0 w-full h-full object-cover"
           />
         )}

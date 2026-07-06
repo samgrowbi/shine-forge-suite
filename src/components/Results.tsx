@@ -107,7 +107,7 @@ export function Results() {
                           <img
                             src={item.composite}
                             alt={item.label}
-                            loading="lazy"
+                            loading="lazy" decoding="async"
                             className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
                           />
                         </div>
