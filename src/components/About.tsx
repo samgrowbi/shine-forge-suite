@@ -28,7 +28,7 @@ export function About({ onBookingClick }: AboutProps) {
               <img
                 src={aboutHero}
                 alt="Facial treatment"
-                loading="lazy"
+                loading="lazy" decoding="async"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent pointer-events-none" />
@@ -56,7 +56,7 @@ export function About({ onBookingClick }: AboutProps) {
                 <img
                   src={aboutHero}
                   alt="Facial treatment"
-                  loading="lazy"
+                  loading="lazy" decoding="async"
                   className="w-full object-contain transition-transform duration-700 group-hover:scale-[1.03]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent pointer-events-none" />

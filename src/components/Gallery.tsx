@@ -18,7 +18,7 @@ export function Gallery() {
               key={`gallery-${i}`}
               src={src}
               alt="Our spa"
-              loading="lazy"
+              loading="lazy" decoding="async"
               className="w-full h-40 md:h-56 lg:h-64 rounded-xl object-cover"
             />
           ))}

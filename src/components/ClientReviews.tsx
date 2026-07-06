@@ -126,7 +126,7 @@ export function ClientReviews() {
                       <img 
                         src={review.image} 
                         alt={review.name}
-                        loading="lazy"
+                        loading="lazy" decoding="async"
                         className="w-11 h-11 lg:w-14 lg:h-14 rounded-full object-cover"
                       />
                       <div>

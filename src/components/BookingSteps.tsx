@@ -131,7 +131,7 @@ export function BookingSteps({ onBookingClick }: BookingStepsProps) {
             <div className="relative">
               <img
                 src={bookingWoman}
-                alt="Premium skincare experience"
+                alt="Premium skincare experience" loading="lazy" decoding="async"
                 className="w-full h-auto rounded-3xl object-cover"
               />
             </div>
