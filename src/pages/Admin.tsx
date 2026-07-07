@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { LogOut, MessageSquare, RefreshCw, User } from "lucide-react";
+import { BRAND_NAME } from "@/config/brand";
 import { format } from "date-fns";
 import { toast } from "sonner";
 
@@ -40,7 +41,7 @@ export default function Admin() {
   const [loadingMsgs, setLoadingMsgs] = useState(false);
 
   useEffect(() => {
-    document.title = "GLO+ | Admin Conversations";
+    document.title = `${BRAND_NAME} | Admin Conversations`;
   }, []);
 
   useEffect(() => {
