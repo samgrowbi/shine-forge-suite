@@ -1,6 +1,6 @@
 // Centralized brand & business contact info - single source of truth.
 
-export const BRAND_NAME = "GLO+";
+export const BRAND_NAME = "Hale Advanced Aesthetics";
 export const BRAND_TAGLINE = "Reimagining beauty through technology. We are dedicated to providing safe, effective, and non-invasive treatments.";
 
 export const BUSINESS_CITY = "Tarzana";
