@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { BRAND_NAME } from "@/config/brand";
 
 
 export default function Auth() {
@@ -53,7 +54,7 @@ export default function Auth() {
   };
 
   useEffect(() => {
-    document.title = "GLO+ | Admin Sign In";
+    document.title = `${BRAND_NAME} | Admin Sign In`;
   }, []);
 
   return (
