@@ -93,10 +93,10 @@ export const LED_TREATMENT: TreatmentConfig = {
     "No Surgery. No Pain. Zero Downtime.",
   heroVideoUrl:
     "https://pub-eb17aaa123fc4145b1ee4c15fc2e5771.r2.dev/Med%20Spa/Hero%20Video/LED%20Hero%20Video.mp4",
-  price: "69.99",
-  originalPrice: "249.99",
-  appointmentTypeId: "90990594",
-  calendarId: "13836448",
+  price: "79.99",
+  originalPrice: "299",
+  appointmentTypeId: "95406341",
+  calendarId: "14289823",
   duration: 60,
   image: treatmentImage,
   technologyDescription: [
