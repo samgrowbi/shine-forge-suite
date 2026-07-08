@@ -26,7 +26,7 @@ const defaultResults = [
   { id: 6, before: `${R2_BASE}/a6-after.png`, after: `${R2_BASE}/a6-before.png`, label: "Skin Tightening", name: "Rachel", age: 68 },
   { id: 7, before: `${R2_BASE}/a7-before.png`, after: `${R2_BASE}/a7-after.png`, label: "Neck Rejuvenation", name: "Diana", age: 58 },
   { id: 8, before: `${R2_BASE}/a8-before.jpg`, after: `${R2_BASE}/a8-after.jpg`, label: "Forehead Pigmentation", name: "Amanda", age: 44 },
-  { id: 9, before: `${R2_BASE}/a9-before.jpg`, after: `${R2_BASE}/a9-after.jpg`, label: "Chest Rejuvenation", name: "Nicole", age: 51 },
+  
   { id: 11, before: faceCatherineBefore.url, after: faceCatherineAfter.url, label: "Skin Rejuvenation", name: "Catherine", age: 54 },
   { id: 12, before: faceMargaretBefore.url, after: faceMargaretAfter.url, label: "Facial Lifting", name: "Margaret", age: 57 },
   { id: 13, before: faceElaineBefore.url, after: faceElaineAfter.url, label: "Wrinkle Reduction", name: "Elaine", age: 62 },
