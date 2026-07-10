@@ -44,7 +44,7 @@ const TREATMENTS: Record<string, TreatmentInfo> = {
     name: "Non-Surgical Face & Neck Lift Treatment",
     appointmentTypeId: "95406341",
     price: "79.99",
-    originalPrice: "299",
+    originalPrice: "299.99",
     duration: 60,
     goodFor:
       "Women 35+ with fine lines, loss of firmness, sagging around the jawline or neck, dull or uneven tone, tired-looking complexion. No injectables, no downtime.",
