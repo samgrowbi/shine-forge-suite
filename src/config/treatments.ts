@@ -94,7 +94,7 @@ export const LED_TREATMENT: TreatmentConfig = {
   heroVideoUrl:
     "https://pub-eb17aaa123fc4145b1ee4c15fc2e5771.r2.dev/Med%20Spa/Hero%20Video/LED%20Hero%20Video.mp4",
   price: "79.99",
-  originalPrice: "299",
+  originalPrice: "299.99",
   appointmentTypeId: "95406341",
   calendarId: "14289823",
   duration: 60,
