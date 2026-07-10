@@ -116,7 +116,7 @@ export const LED_TREATMENT: TreatmentConfig = {
     {
       question: "How does it work?",
       answer:
-        "Our Instant Lift & Skin Tightening Facial uses specific wavelengths of light energy to penetrate deep into the skin's layers, activating collagen production and cellular repair. The result is visibly smoother skin, restored firmness, and improved tone and texture.",
+        "Our {{treatment}} uses specific wavelengths of light energy to penetrate deep into the skin's layers, activating collagen production and cellular repair. The result is visibly smoother skin, restored firmness, and improved tone and texture.",
     },
     {
       question: "Is it painful?",
