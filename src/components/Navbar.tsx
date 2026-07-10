@@ -41,7 +41,7 @@ export function Navbar({ onBookingClick }: NavbarProps) {
           <img 
             src={haleLogo.url} 
             alt={BRAND_NAME}
-            className="h-[48px] w-auto md:h-[64px]" 
+            className="h-[48px] w-auto md:h-[64px] invert" 
             fetchPriority="high" decoding="async"/>
         </a>
 
