@@ -56,7 +56,7 @@ export function FAQ() {
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="text-gray-600 font-light text-[15px] md:text-base lg:text-lg leading-relaxed pb-5 lg:pb-6 pr-12 lg:pr-14 text-left">
-                  {faq.answer}
+                  {faq.answer.replace(/\{\{treatment\}\}/g, treatment.label)}
                 </AccordionContent>
               </AccordionItem>
             ))}
