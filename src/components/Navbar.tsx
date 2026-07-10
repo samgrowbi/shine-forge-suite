@@ -33,16 +33,17 @@ export function Navbar({ onBookingClick }: NavbarProps) {
     <nav
       dir="ltr"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white shadow-sm ${
-        isScrolled ? "py-1 md:py-0" : "py-2 md:py-0"
+        isScrolled ? "py-1 md:py-1" : "py-1 md:py-1"
       }`}
     >
       <div className="container mx-auto px-5 flex justify-between items-center">
-        <a href="#" className="block">
+        <a href="#" className="block overflow-hidden h-[28px] w-[90px] md:h-[32px] md:w-[105px]">
           <img 
             src={haleLogo.url} 
             alt={BRAND_NAME}
-            className="h-[48px] w-auto md:h-[64px] invert" 
-            fetchPriority="high" decoding="async"/>
+            className="h-full w-full object-cover object-center invert" 
+            fetchPriority="high" 
+            decoding="async"/>
         </a>
 
         {/* Desktop Menu */}
