@@ -448,14 +448,25 @@ Deno.serve(async (req) => {
                 error: `Please complete: ${f.label}`,
               };
             }
+            // Yes/No required must be an explicit "Yes" (consent/terms).
+            if (f.type === "yesno" && String(raw).toLowerCase() !== "yes") {
+              return {
+                success: false,
+                error: `Please agree to: ${f.label}`,
+              };
+            }
           }
 
           // Build Acuity fields array dynamically from intakeFields.
           const fields = t.intakeFields.map((f) => {
             const raw = answers[String(f.acuityFieldId)];
-            const value = Array.isArray(raw)
+            let value = Array.isArray(raw)
               ? raw.join(", ")
               : String(raw ?? "");
+            // Acuity single-checkbox fields want lowercase "yes" to tick the box.
+            if (f.type === "yesno") {
+              value = value.toLowerCase() === "yes" ? "yes" : "";
+            }
             return { id: f.acuityFieldId, value };
           });
 
