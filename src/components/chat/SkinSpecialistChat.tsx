@@ -519,6 +519,8 @@ function ToolPartRender({
         treatmentName?: string;
         datetime?: string;
         appointmentId?: string | number;
+        price?: string | number;
+        treatmentSlug?: string;
       };
     }).output;
     if (state === "output-available" && output?.success) {
@@ -537,6 +539,8 @@ function BookingSuccessCard({
     treatmentName?: string;
     datetime?: string;
     appointmentId?: string | number;
+    price?: string | number;
+    treatmentSlug?: string;
   };
 }) {
   const dt = output.datetime ? new Date(output.datetime) : null;
@@ -550,6 +554,10 @@ function BookingSuccessCard({
       if (sessionStorage.getItem(key)) return;
       const fbq = (window as unknown as { fbq?: (...a: unknown[]) => void }).fbq;
       if (typeof fbq === "function") {
+        const value =
+          typeof output.price === "number"
+            ? output.price
+            : parseFloat(String(output.price ?? "0")) || 0;
         fbq(
           "track",
           "Schedule",
@@ -558,6 +566,13 @@ function BookingSuccessCard({
             content_category: "Booking",
             appointment_id: String(output.appointmentId),
             source: "sofia_chatbot",
+            content_ids: output.treatmentSlug
+              ? [output.treatmentSlug]
+              : undefined,
+            content_type: "product",
+            value,
+            currency: "USD",
+            predicted_ltv: value,
           },
           { eventID: `schedule_${output.appointmentId}` },
         );
@@ -566,7 +581,7 @@ function BookingSuccessCard({
     } catch {
       // ignore
     }
-  }, [output.appointmentId, output.treatmentName]);
+  }, [output.appointmentId, output.treatmentName, output.price, output.treatmentSlug]);
 
   return (
     <div className="mt-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
