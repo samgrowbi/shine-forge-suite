@@ -30,10 +30,52 @@ export const SOFIA_ACTIVE_TREATMENT_SLUGS: readonly string[] = [
 
 // Intake fields per active treatment. Empty array = only universal contact
 // fields are collected (first name, last name, email, phone).
-// TODO(intake): populate once Acuity Powerhouse API access is enabled and the
-// real numeric field IDs are known.
+// Real numeric Acuity field IDs, mirrored in
+// supabase/functions/skin-specialist-chat/index.ts.
 export const SOFIA_INTAKE_FIELDS: Record<string, IntakeField[]> = {
-  "non-surgical-face-neck-lift": [],
+  "non-surgical-face-neck-lift": [
+    {
+      acuityFieldId: 18796414,
+      label: "Please tick your concerns",
+      type: "checkboxes",
+      required: true,
+      options: [
+        "Sagging Neck",
+        "Sagging Cheeks",
+        "Fine Lines",
+        "Wrinkles",
+        "Acne",
+        "Pigmentation",
+        "Sun Damage",
+        "Dark Circles",
+        "Rosacea",
+        "Big Pores",
+        "Skin Texture",
+        "No Concerns",
+      ],
+    },
+    {
+      acuityFieldId: 18796415,
+      label: "Age range",
+      type: "radio",
+      required: true,
+      options: ["Below 20", "21-34", "35-49", "50-65", "66+"],
+    },
+    {
+      acuityFieldId: 18796416,
+      label:
+        "I agree to the promotional terms: reschedules allowed once with 24h notice, otherwise the offer expires.",
+      type: "yesno",
+      required: true,
+    },
+    {
+      acuityFieldId: 18796418,
+      label:
+        "Send me appointment reminders by SMS and email.",
+      type: "yesno",
+      required: true,
+    },
+  ],
 };
 
 export function getSofiaIntakeFields(slug: string): IntakeField[] {
