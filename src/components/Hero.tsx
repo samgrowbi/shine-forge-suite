@@ -43,7 +43,7 @@ export function Hero({ onBookingClick }: HeroProps) {
     };
   }, []);
 
-  const appointmentTypeID = treatment.appointmentTypeId || "93509464";
+  const appointmentTypeID = treatment.appointmentTypeId || "95406341";
   const calendarID = treatment.calendarId || "14112013";
 
   const prefetchBookingData = () => {

@@ -102,7 +102,7 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
         email: formData.email || null,
         phone: formData.phone ? `+1${formData.phone}` : null,
         treatment_slug: treatmentConfig?.slug || null,
-        appointment_type_id: String(treatmentConfig?.appointmentTypeId || "93509464"),
+        appointment_type_id: String(treatmentConfig?.appointmentTypeId || "95406341"),
         selected_datetime: selectedTime || null,
         status: "started",
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
@@ -147,7 +147,7 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
     });
   }, [currentStep, treatmentConfig?.slug]);
 
-  const appointmentTypeID = treatmentConfig?.appointmentTypeId || "93509464";
+  const appointmentTypeID = treatmentConfig?.appointmentTypeId || "95406341";
   const calendarID = treatmentConfig?.calendarId || "14112013";
 
   const filterIntakeForms = (forms: IntakeForm[]) =>
