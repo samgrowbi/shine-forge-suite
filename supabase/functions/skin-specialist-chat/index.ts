@@ -50,8 +50,47 @@ const TREATMENTS: Record<string, TreatmentInfo> = {
       "Women 35+ with fine lines, loss of firmness, sagging around the jawline or neck, dull or uneven tone, tired-looking complexion. No injectables, no downtime.",
     shortPitch:
       "Specific wavelengths of light energy go into the deeper layers of your skin and switch on your own collagen production. Most clients leave with a visible glow and lift after the very first session.",
-    // TODO(intake): populate once Acuity Powerhouse API access is enabled.
-    intakeFields: [],
+    intakeFields: [
+      {
+        acuityFieldId: 18796414,
+        label: "Please tick your concerns",
+        type: "checkboxes",
+        required: true,
+        options: [
+          "Sagging Neck",
+          "Sagging Cheeks",
+          "Fine Lines",
+          "Wrinkles",
+          "Acne",
+          "Pigmentation",
+          "Sun Damage",
+          "Dark Circles",
+          "Rosacea",
+          "Big Pores",
+          "Skin Texture",
+          "No Concerns",
+        ],
+      },
+      {
+        acuityFieldId: 18796415,
+        label: "Age range",
+        type: "radio",
+        required: true,
+        options: ["Below 20", "21-34", "35-49", "50-65", "66+"],
+      },
+      {
+        acuityFieldId: 18796416,
+        label: "Agree to promotional terms",
+        type: "yesno",
+        required: true,
+      },
+      {
+        acuityFieldId: 18796418,
+        label: "SMS/email reminders consent",
+        type: "yesno",
+        required: true,
+      },
+    ],
   },
 };
 
