@@ -36,6 +36,7 @@ export default function ThankYou() {
   const timezone = searchParams.get("timezone");
   const calendarTimezone = searchParams.get("calendarTimezone");
   const location = searchParams.get("location");
+  const priceParam = searchParams.get("price");
 
   const treatmentConfig = getTreatmentBySlug(slug);
 
@@ -53,14 +54,20 @@ export default function ThankYou() {
     const eventId = `schedule_${appointmentId || Date.now()}`;
     const storageKey = `pixel_schedule_sent_${appointmentId || 'unknown'}`;
     if (window.fbq && !sessionStorage.getItem(storageKey)) {
+      const value = parseFloat(priceParam || treatmentConfig.price || "0") || 0;
       window.fbq('track', 'Schedule', {
         content_name: treatment || treatmentConfig.label,
         content_category: 'Booking',
         appointment_id: appointmentId,
+        content_ids: [treatmentConfig.slug],
+        content_type: 'product',
+        value,
+        currency: 'USD',
+        predicted_ltv: value,
       }, { eventID: eventId });
       sessionStorage.setItem(storageKey, '1');
     }
-  }, [treatment, appointmentId, treatmentConfig.label]);
+  }, [treatment, appointmentId, treatmentConfig.label, treatmentConfig.slug, treatmentConfig.price, priceParam]);
 
   return (
     <TreatmentProvider treatment={treatmentConfig}>
