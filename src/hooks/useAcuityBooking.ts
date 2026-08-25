@@ -92,6 +92,7 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
   // ---- Lead capture (every form attempt, successful or abandoned) ----
   const leadSessionIdRef = useRef<string>(getLeadSessionId());
   const leadDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const leadPersistedRef = useRef(false);
 
   const upsertLead = async (overrides: Record<string, unknown> = {}) => {
     try {
@@ -109,7 +110,34 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
         referrer: typeof document !== "undefined" ? document.referrer || null : null,
         ...overrides,
       };
-      await (supabase.from("leads") as any).upsert(payload, { onConflict: "session_id" });
+      const leadsTable = supabase.from("leads") as any;
+
+      if (leadPersistedRef.current) {
+        const { error } = await leadsTable
+          .update(payload)
+          .eq("session_id", leadSessionIdRef.current);
+        if (error) throw error;
+        return;
+      }
+
+      const { error: insertError } = await leadsTable.insert(payload);
+      if (!insertError) {
+        leadPersistedRef.current = true;
+        return;
+      }
+
+      // sessionStorage survives a page reload, so update the existing hidden row
+      // without granting anonymous visitors permission to read captured leads.
+      if (insertError.code === "23505") {
+        const { error: updateError } = await leadsTable
+          .update(payload)
+          .eq("session_id", leadSessionIdRef.current);
+        if (updateError) throw updateError;
+        leadPersistedRef.current = true;
+        return;
+      }
+
+      throw insertError;
     } catch (err) {
       console.warn("Lead capture failed", err);
     }
