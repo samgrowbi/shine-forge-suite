@@ -9,9 +9,11 @@ import ThankYou from "./pages/ThankYou";
 
 import BookLedCryo from "./pages/BookLedCryo";
 import BookLed from "./pages/BookLed";
+import BookLedB from "./pages/BookLedB";
 import BookBodySculpting from "./pages/BookBodySculpting";
 import BookInstantLift from "./pages/BookInstantLift";
 import LedCryo from "./pages/LedCryo";
+import LedB from "./pages/LedB";
 import BodySculpting from "./pages/BodySculpting";
 import InstantLift from "./pages/InstantLift";
 import SkinSpecialistChat from "./components/chat/SkinSpecialistChat";
@@ -28,11 +30,13 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/b" element={<LedB />} />
           <Route path="/instant-lift" element={<InstantLift />} />
           <Route path="/led" element={<Navigate to="/" replace />} />
           <Route path="/led-cryo" element={<LedCryo />} />
           <Route path="/body-sculpting" element={<BodySculpting />} />
           <Route path="/book/led" element={<BookLed />} />
+          <Route path="/book/b" element={<BookLedB />} />
           <Route path="/book/instant-lift" element={<BookInstantLift />} />
           <Route path="/book/led-cryo" element={<BookLedCryo />} />
           <Route path="/book/body-sculpting" element={<BookBodySculpting />} />
