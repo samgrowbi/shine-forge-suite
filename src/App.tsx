@@ -9,9 +9,11 @@ import ThankYou from "./pages/ThankYou";
 
 import BookLedCryo from "./pages/BookLedCryo";
 import BookLed from "./pages/BookLed";
+import BookLedB from "./pages/BookLedB";
 import BookBodySculpting from "./pages/BookBodySculpting";
 import BookInstantLift from "./pages/BookInstantLift";
 import LedCryo from "./pages/LedCryo";
+import LedB from "./pages/LedB";
 import BodySculpting from "./pages/BodySculpting";
 import InstantLift from "./pages/InstantLift";
 import SkinSpecialistChat from "./components/chat/SkinSpecialistChat";
