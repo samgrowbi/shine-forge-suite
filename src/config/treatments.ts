@@ -336,3 +336,10 @@ export const INSTANT_LIFT_TREATMENT: TreatmentConfig = {
     "Our Instant Lift & Skin Tightening treatment delivers specific wavelengths of light energy into the skin's deeper layers, activating the body's own natural healing process of collagen production and cellular repair. The facial is entirely non-invasive, without heat, injectables, or foreign substances.",
   ],
 };
+
+// Duplicate of LED treatment at /b - identical copy, different appointment type
+export const LED_B_TREATMENT: TreatmentConfig = {
+  ...LED_TREATMENT,
+  slug: "b",
+  appointmentTypeId: "97890001",
+};
