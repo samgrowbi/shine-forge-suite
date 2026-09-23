@@ -1,10 +1,5 @@
-import googleMapsLogo from "@/assets/google-maps-logo.webp";
-import yelpLogo from "@/assets/yelp-logo.webp";
-import trustpilotLogo from "@/assets/trustpilot-logo.webp";
 import aboutHero from "@/assets/about-hero.webp";
 
-import { Button } from "@/components/ui/button";
-import { useTreatment } from "@/context/TreatmentContext";
 import { BRAND_NAME, BUSINESS_CITY } from "@/config/brand";
 import { AccentWord } from "./ui/AccentWord";
 
@@ -62,16 +57,6 @@ export function About({ onBookingClick }: AboutProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-black/5 to-transparent pointer-events-none" />
               </div>
             </div>
-
-
-
-            {/* Platform Logos */}
-            <div className="flex items-center justify-center gap-5 md:gap-12">
-              <img src={googleMapsLogo} alt="Google Maps" loading="lazy" className="h-14 md:h-[104px] object-contain opacity-80" />
-              <img src={yelpLogo} alt="Yelp" loading="lazy" className="h-6 md:h-11 object-contain opacity-80" />
-              <img src={trustpilotLogo} alt="Trustpilot" loading="lazy" className="h-6 md:h-11 object-contain opacity-80" />
-            </div>
-
           </div>
         </div>
       </div>

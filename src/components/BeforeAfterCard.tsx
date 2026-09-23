@@ -9,10 +9,11 @@ interface BeforeAfterCardProps {
   label: string;
   name?: string;
   age?: number;
+  imageAlt?: string;
   className?: string;
 }
 
-export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, className }: BeforeAfterCardProps) {
+export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, imageAlt, className }: BeforeAfterCardProps) {
   const [beforeError, setBeforeError] = useState(false);
   const [afterError, setAfterError] = useState(false);
   const [open, setOpen] = useState(false);
@@ -43,7 +44,7 @@ export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, classNa
                     ) : (
                       <img
                           src={beforeImg}
-                          alt="Before Treatment"
+                          alt={`Before ${imageAlt || label}`}
                           loading="lazy" decoding="async"
                           className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110"
                           onError={() => setBeforeError(true)}
@@ -57,7 +58,7 @@ export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, classNa
                     ) : (
                       <img
                           src={afterImg}
-                          alt="After Treatment"
+                          alt={`After ${imageAlt || label}`}
                           loading="lazy" decoding="async"
                           className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110"
                           onError={() => setAfterError(true)}
