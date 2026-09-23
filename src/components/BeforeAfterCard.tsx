@@ -9,10 +9,11 @@ interface BeforeAfterCardProps {
   label: string;
   name?: string;
   age?: number;
+  imageAlt?: string;
   className?: string;
 }
 
-export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, className }: BeforeAfterCardProps) {
+export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, imageAlt, className }: BeforeAfterCardProps) {
   const [beforeError, setBeforeError] = useState(false);
   const [afterError, setAfterError] = useState(false);
   const [open, setOpen] = useState(false);
@@ -43,7 +44,7 @@ export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, classNa
                     ) : (
                       <img
                           src={beforeImg}
-                          alt="Before Treatment"
+                          alt={`Before ${imageAlt || label}`}
                           loading="lazy" decoding="async"
                           className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110"
                           onError={() => setBeforeError(true)}
@@ -57,16 +58,16 @@ export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, classNa
                     ) : (
                       <img
                           src={afterImg}
-                          alt="After Treatment"
+                          alt={`After ${imageAlt || label}`}
                           loading="lazy" decoding="async"
                           className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110"
                           onError={() => setAfterError(true)}
                       />
                     )}
-                    {/* After 3 Sessions tag */}
+                    {/* After 2 Sessions tag */}
                     {!showAfterFallback && (
                       <span className="absolute top-2 right-2 lg:top-3 lg:right-3 px-2 py-0.5 lg:px-2.5 lg:py-1 text-[10px] lg:text-xs font-semibold uppercase tracking-wide bg-white/95 text-pink-600 rounded shadow-sm">
-                        After 3 Sessions
+                        After 2 Sessions
                       </span>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />

@@ -4,35 +4,25 @@ import Autoplay from "embla-carousel-autoplay";
 import { BeforeAfterCard } from "./BeforeAfterCard";
 import { useTreatment } from "@/context/TreatmentContext";
 import { AccentWord } from "./ui/AccentWord";
-import faceCatherineBefore from "@/assets/before-after/face_catherine_before.webp.asset.json";
-import faceCatherineAfter from "@/assets/before-after/face_catherine_after.webp.asset.json";
-import faceMargaretBefore from "@/assets/before-after/face_margaret_before.webp.asset.json";
-import faceMargaretAfter from "@/assets/before-after/face_margaret_after.webp.asset.json";
-import faceElaineBefore from "@/assets/before-after/face_elaine_before.webp.asset.json";
-import faceElaineAfter from "@/assets/before-after/face_elaine_after.webp.asset.json";
-import faceBriannaBefore from "@/assets/before-after/face_brianna_before.webp.asset.json";
-import faceBriannaAfter from "@/assets/before-after/face_brianna_after.webp.asset.json";
-import faceVanessaBefore from "@/assets/before-after/face_vanessa_before.webp.asset.json";
-import faceVanessaAfter from "@/assets/before-after/face_vanessa_after.webp.asset.json";
-import faceRosalindBefore from "@/assets/before-after/face_rosalind_before.webp.asset.json";
-import faceRosalindAfter from "@/assets/before-after/face_rosalind_after.webp.asset.json";
-const R2_BASE = "https://pub-eb17aaa123fc4145b1ee4c15fc2e5771.r2.dev/Med%20Spa/Before%20After";
-
+import faceResult1Before from "@/assets/before-after/new/face-result-1-before.webp.asset.json";
+import faceResult1After from "@/assets/before-after/new/face-result-1-after.webp.asset.json";
+import faceResult2Before from "@/assets/before-after/new/face-result-2-before.webp.asset.json";
+import faceResult2After from "@/assets/before-after/new/face-result-2-after.webp.asset.json";
+import faceResult3Before from "@/assets/before-after/new/face-result-3-before.webp.asset.json";
+import faceResult3After from "@/assets/before-after/new/face-result-3-after.webp.asset.json";
+import faceResult4Before from "@/assets/before-after/new/face-result-4-before.webp.asset.json";
+import faceResult4After from "@/assets/before-after/new/face-result-4-after.webp.asset.json";
+import faceResult5Before from "@/assets/before-after/new/face-result-5-before.webp.asset.json";
+import faceResult5After from "@/assets/before-after/new/face-result-5-after.webp.asset.json";
+import faceResult6Before from "@/assets/before-after/new/face-result-6-before.webp.asset.json";
+import faceResult6After from "@/assets/before-after/new/face-result-6-after.webp.asset.json";
 const defaultResults = [
-  
-  { id: 3, before: `${R2_BASE}/a3-before.png`, after: `${R2_BASE}/a3-after.png`, label: "Facial Lifting", name: "Maria", age: 61 },
-  { id: 4, before: `${R2_BASE}/a4-before.png`, after: `${R2_BASE}/a4-after.png`, label: "Skin Rejuvenation", name: "Jennifer", age: 55 },
-  { id: 5, before: `${R2_BASE}/a5-after.png`, after: `${R2_BASE}/a5-before.png`, label: "Pigmentation", name: "Laura", age: 58 },
-  { id: 6, before: `${R2_BASE}/a6-after.png`, after: `${R2_BASE}/a6-before.png`, label: "Skin Tightening", name: "Rachel", age: 68 },
-  { id: 7, before: `${R2_BASE}/a7-before.png`, after: `${R2_BASE}/a7-after.png`, label: "Neck Rejuvenation", name: "Diana", age: 58 },
-  
-  
-  { id: 11, before: faceCatherineBefore.url, after: faceCatherineAfter.url, label: "Skin Rejuvenation", name: "Catherine", age: 54 },
-  { id: 12, before: faceMargaretBefore.url, after: faceMargaretAfter.url, label: "Facial Lifting", name: "Margaret", age: 57 },
-  { id: 13, before: faceElaineBefore.url, after: faceElaineAfter.url, label: "Wrinkle Reduction", name: "Elaine", age: 62 },
-  { id: 14, before: faceBriannaBefore.url, after: faceBriannaAfter.url, label: "Skin Tightening", name: "Brianna", age: 34 },
-  { id: 15, before: faceVanessaBefore.url, after: faceVanessaAfter.url, label: "Skin Rejuvenation", name: "Vanessa", age: 49 },
-  { id: 16, before: faceRosalindBefore.url, after: faceRosalindAfter.url, label: "Neck Rejuvenation", name: "Rosalind", age: 63 },
+  { id: 11, before: faceResult1Before.url, after: faceResult1After.url, label: "Skin Rejuvenation", name: "Catherine", age: 54 },
+  { id: 12, before: faceResult2Before.url, after: faceResult2After.url, label: "Facial Lifting", name: "Margaret", age: 57 },
+  { id: 13, before: faceResult3Before.url, after: faceResult3After.url, label: "Wrinkle Reduction", name: "Elaine", age: 62 },
+  { id: 14, before: faceResult4Before.url, after: faceResult4After.url, label: "Skin Tightening", name: "Brianna", age: 34 },
+  { id: 15, before: faceResult5Before.url, after: faceResult5After.url, label: "Skin Rejuvenation", name: "Vanessa", age: 49 },
+  { id: 16, before: faceResult6Before.url, after: faceResult6After.url, label: "Neck Rejuvenation", name: "Rosalind", age: 63 },
 ];
 
 export function Results() {
@@ -138,6 +128,7 @@ export function Results() {
                       label={item.label}
                       name={'name' in item ? (item as any).name : undefined}
                       age={'age' in item ? (item as any).age : undefined}
+                      imageAlt={'name' in item && (item as any).name ? `${(item as any).name}'s ${item.label.toLowerCase()} result` : `${item.label} result`}
                     />
                   )}
                 </CarouselItem>
