@@ -4,8 +4,6 @@ import Autoplay from "embla-carousel-autoplay";
 import { BeforeAfterCard } from "./BeforeAfterCard";
 import { useTreatment } from "@/context/TreatmentContext";
 import { AccentWord } from "./ui/AccentWord";
-import faceResult1Before from "@/assets/before-after/new/face-result-1-before.webp.asset.json";
-import faceResult1After from "@/assets/before-after/new/face-result-1-after.webp.asset.json";
 import faceResult2Before from "@/assets/before-after/new/face-result-2-before.webp.asset.json";
 import faceResult2After from "@/assets/before-after/new/face-result-2-after.webp.asset.json";
 import faceResult3Before from "@/assets/before-after/new/face-result-3-before.webp.asset.json";
@@ -17,7 +15,6 @@ import faceResult5After from "@/assets/before-after/new/face-result-5-after.webp
 import faceResult6Before from "@/assets/before-after/new/face-result-6-before.webp.asset.json";
 import faceResult6After from "@/assets/before-after/new/face-result-6-after.webp.asset.json";
 const defaultResults = [
-  { id: 11, before: faceResult1Before.url, after: faceResult1After.url, label: "Skin Rejuvenation", name: "Catherine", age: 54 },
   { id: 12, before: faceResult2Before.url, after: faceResult2After.url, label: "Facial Lifting", name: "Margaret", age: 57 },
   { id: 13, before: faceResult3Before.url, after: faceResult3After.url, label: "Wrinkle Reduction", name: "Elaine", age: 62 },
   { id: 14, before: faceResult4Before.url, after: faceResult4After.url, label: "Skin Tightening", name: "Brianna", age: 34 },
