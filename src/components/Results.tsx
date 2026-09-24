@@ -4,8 +4,6 @@ import Autoplay from "embla-carousel-autoplay";
 import { BeforeAfterCard } from "./BeforeAfterCard";
 import { useTreatment } from "@/context/TreatmentContext";
 import { AccentWord } from "./ui/AccentWord";
-import faceResult1Before from "@/assets/before-after/new/face-result-1-before.webp.asset.json";
-import faceResult1After from "@/assets/before-after/new/face-result-1-after.webp.asset.json";
 import faceResult2Before from "@/assets/before-after/new/face-result-2-before.webp.asset.json";
 import faceResult2After from "@/assets/before-after/new/face-result-2-after.webp.asset.json";
 import faceResult3Before from "@/assets/before-after/new/face-result-3-before.webp.asset.json";
