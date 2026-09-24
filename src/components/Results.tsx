@@ -17,7 +17,6 @@ import faceResult5After from "@/assets/before-after/new/face-result-5-after.webp
 import faceResult6Before from "@/assets/before-after/new/face-result-6-before.webp.asset.json";
 import faceResult6After from "@/assets/before-after/new/face-result-6-after.webp.asset.json";
 const defaultResults = [
-  { id: 11, before: faceResult1Before.url, after: faceResult1After.url, label: "Skin Rejuvenation", name: "Catherine", age: 54 },
   { id: 12, before: faceResult2Before.url, after: faceResult2After.url, label: "Facial Lifting", name: "Margaret", age: 57 },
   { id: 13, before: faceResult3Before.url, after: faceResult3After.url, label: "Wrinkle Reduction", name: "Elaine", age: 62 },
   { id: 14, before: faceResult4Before.url, after: faceResult4After.url, label: "Skin Tightening", name: "Brianna", age: 34 },
