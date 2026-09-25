@@ -341,5 +341,5 @@ export const INSTANT_LIFT_TREATMENT: TreatmentConfig = {
 export const LED_B_TREATMENT: TreatmentConfig = {
   ...LED_TREATMENT,
   slug: "broad",
-  appointmentTypeId: "97890001",
+  appointmentTypeId: "98730062",
 };
