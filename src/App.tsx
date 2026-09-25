@@ -29,13 +29,15 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/b" element={<LedB />} />
+          <Route path="/broad" element={<LedB />} />
+          <Route path="/b" element={<Navigate to="/broad" replace />} />
           <Route path="/instant-lift" element={<InstantLift />} />
           <Route path="/led" element={<Navigate to="/" replace />} />
           <Route path="/led-cryo" element={<LedCryo />} />
           <Route path="/body-sculpting" element={<BodySculpting />} />
           <Route path="/book/led" element={<BookLed />} />
-          <Route path="/book/b" element={<BookLedB />} />
+          <Route path="/book/broad" element={<BookLedB />} />
+          <Route path="/book/b" element={<Navigate to="/book/broad" replace />} />
           <Route path="/book/instant-lift" element={<BookInstantLift />} />
           <Route path="/book/led-cryo" element={<BookLedCryo />} />
           <Route path="/book/body-sculpting" element={<BookBodySculpting />} />
