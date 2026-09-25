@@ -36,7 +36,8 @@ const App = () => (
           <Route path="/led-cryo" element={<LedCryo />} />
           <Route path="/body-sculpting" element={<BodySculpting />} />
           <Route path="/book/led" element={<BookLed />} />
-          <Route path="/book/b" element={<BookLedB />} />
+          <Route path="/book/broad" element={<BookLedB />} />
+          <Route path="/book/b" element={<Navigate to="/book/broad" replace />} />
           <Route path="/book/instant-lift" element={<BookInstantLift />} />
           <Route path="/book/led-cryo" element={<BookLedCryo />} />
           <Route path="/book/body-sculpting" element={<BookBodySculpting />} />
