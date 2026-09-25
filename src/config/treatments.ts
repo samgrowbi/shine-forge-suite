@@ -337,9 +337,9 @@ export const INSTANT_LIFT_TREATMENT: TreatmentConfig = {
   ],
 };
 
-// Duplicate of LED treatment at /b - identical copy, different appointment type
+// Duplicate of LED treatment at /broad - identical copy, different appointment type
 export const LED_B_TREATMENT: TreatmentConfig = {
   ...LED_TREATMENT,
-  slug: "b",
+  slug: "broad",
   appointmentTypeId: "97890001",
 };
