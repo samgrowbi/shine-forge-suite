@@ -50,7 +50,7 @@ export function Results() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-pink-50/50 rounded-full blur-3xl -z-10 pointer-events-none opacity-60" />
 
       <div className="container mx-auto px-5 pt-0 md:pt-0">
-        <div className="text-center mb-8 lg:mb-12 space-y-1 lg:space-y-2">
+        <div className="hidden sm:block text-center mb-8 lg:mb-12">
           <h2 className="hidden sm:block text-4xl lg:text-5xl xl:text-6xl font-serif font-normal text-gray-900 leading-tight">
             <span className="text-gray-900">Real People.</span> <AccentWord>Real Results.</AccentWord>
           </h2>
