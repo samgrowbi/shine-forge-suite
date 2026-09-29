@@ -10,10 +10,12 @@ interface BeforeAfterCardProps {
   name?: string;
   age?: number;
   imageAlt?: string;
+  altText?: string;
+  objectPosition?: string;
   className?: string;
 }
 
-export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, imageAlt, className }: BeforeAfterCardProps) {
+export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, imageAlt, altText, objectPosition = "center center", className }: BeforeAfterCardProps) {
   const [beforeError, setBeforeError] = useState(false);
   const [afterError, setAfterError] = useState(false);
   const [open, setOpen] = useState(false);
@@ -44,7 +46,8 @@ export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, imageAl
                     ) : (
                       <img
                           src={beforeImg}
-                          alt={`Before ${imageAlt || label}`}
+                          alt={altText ? `${altText} (before)` : `Before ${imageAlt || label}`}
+                          style={{ objectPosition }}
                           loading="lazy" decoding="async"
                           className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110"
                           onError={() => setBeforeError(true)}
@@ -58,17 +61,12 @@ export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, imageAl
                     ) : (
                       <img
                           src={afterImg}
-                          alt={`After ${imageAlt || label}`}
+                          alt={altText ? `${altText} (after)` : `After ${imageAlt || label}`}
+                          style={{ objectPosition }}
                           loading="lazy" decoding="async"
                           className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-110"
                           onError={() => setAfterError(true)}
                       />
-                    )}
-                    {/* After 2 Sessions tag */}
-                    {!showAfterFallback && (
-                      <span className="absolute top-2 right-2 lg:top-3 lg:right-3 px-2 py-0.5 lg:px-2.5 lg:py-1 text-[10px] lg:text-xs font-semibold uppercase tracking-wide bg-white/95 text-pink-600 rounded shadow-sm">
-                        After 2 Sessions
-                      </span>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 </div>

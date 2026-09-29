@@ -4,6 +4,8 @@ import Autoplay from "embla-carousel-autoplay";
 import { BeforeAfterCard } from "./BeforeAfterCard";
 import { useTreatment } from "@/context/TreatmentContext";
 import { AccentWord } from "./ui/AccentWord";
+import faceResult1Before from "@/assets/before-after/new/face-result-1-before.webp.asset.json";
+import faceResult1After from "@/assets/before-after/new/face-result-1-after.webp.asset.json";
 import faceResult2Before from "@/assets/before-after/new/face-result-2-before.webp.asset.json";
 import faceResult2After from "@/assets/before-after/new/face-result-2-after.webp.asset.json";
 import faceResult3Before from "@/assets/before-after/new/face-result-3-before.webp.asset.json";
@@ -12,14 +14,12 @@ import faceResult4Before from "@/assets/before-after/new/face-result-4-before.we
 import faceResult4After from "@/assets/before-after/new/face-result-4-after.webp.asset.json";
 import faceResult5Before from "@/assets/before-after/new/face-result-5-before.webp.asset.json";
 import faceResult5After from "@/assets/before-after/new/face-result-5-after.webp.asset.json";
-import faceResult6Before from "@/assets/before-after/new/face-result-6-before.webp.asset.json";
-import faceResult6After from "@/assets/before-after/new/face-result-6-after.webp.asset.json";
 const defaultResults = [
-  { id: 12, before: faceResult2Before.url, after: faceResult2After.url, label: "Facial Lifting", name: "Margaret", age: 57 },
-  { id: 13, before: faceResult3Before.url, after: faceResult3After.url, label: "Wrinkle Reduction", name: "Elaine", age: 62 },
-  { id: 14, before: faceResult4Before.url, after: faceResult4After.url, label: "Skin Tightening", name: "Brianna", age: 34 },
-  { id: 15, before: faceResult5Before.url, after: faceResult5After.url, label: "Skin Rejuvenation", name: "Vanessa", age: 49 },
-  { id: 16, before: faceResult6Before.url, after: faceResult6After.url, label: "Neck Rejuvenation", name: "Rosalind", age: 63 },
+  { id: 11, before: faceResult1Before.url, after: faceResult1After.url, label: "Facial Rejuvenation", name: "Catherine", age: 38, objectPosition: "center center" },
+  { id: 12, before: faceResult2Before.url, after: faceResult2After.url, label: "Facial Lifting", name: "Margaret", age: 41, objectPosition: "center center" },
+  { id: 13, before: faceResult3Before.url, after: faceResult3After.url, label: "Wrinkle Reduction", name: "Elaine", age: 62, objectPosition: "center center" },
+  { id: 14, before: faceResult4Before.url, after: faceResult4After.url, label: "Skin Tightening", name: "Brianna", age: 34, objectPosition: "center center" },
+  { id: 15, before: faceResult5Before.url, after: faceResult5After.url, label: "Neck Rejuvenation", name: "Rosalind", age: 42, objectPosition: "center center" },
 ];
 
 export function Results() {
@@ -51,18 +51,9 @@ export function Results() {
 
       <div className="container mx-auto px-5 pt-0 md:pt-0">
         <div className="text-center mb-8 lg:mb-12 space-y-1 lg:space-y-2">
-          <p className="text-[18px] lg:text-base uppercase tracking-[0.2em] text-gray-400 font-bold">No Filters</p>
           <h2 className="hidden sm:block text-4xl lg:text-5xl xl:text-6xl font-serif font-normal text-gray-900 leading-tight">
             <span className="text-gray-900">Real People.</span> <AccentWord>Real Results.</AccentWord>
           </h2>
-          <div className="flex justify-center pt-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 border border-green-200 rounded-full text-xs lg:text-sm font-medium text-green-700">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="text-green-600">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              Verified Photos
-            </span>
-          </div>
         </div>
 
         <div className="relative">
@@ -125,7 +116,8 @@ export function Results() {
                       label={item.label}
                       name={'name' in item ? (item as any).name : undefined}
                       age={'age' in item ? (item as any).age : undefined}
-                      imageAlt={'name' in item && (item as any).name ? `${(item as any).name}'s ${item.label.toLowerCase()} result` : `${item.label} result`}
+                      altText={'name' in item && (item as any).name ? `Before and after treatment result - ${(item as any).name}, ${(item as any).age}` : undefined}
+                      objectPosition={(item as any).objectPosition}
                     />
                   )}
                 </CarouselItem>
