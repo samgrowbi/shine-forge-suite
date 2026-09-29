@@ -15,11 +15,11 @@ import faceResult4After from "@/assets/before-after/new/face-result-4-after.webp
 import faceResult5Before from "@/assets/before-after/new/face-result-5-before.webp.asset.json";
 import faceResult5After from "@/assets/before-after/new/face-result-5-after.webp.asset.json";
 const defaultResults = [
-  { id: 11, before: faceResult1Before.url, after: faceResult1After.url, label: "Facial Rejuvenation", name: "Catherine", age: 38, objectPosition: "center center" },
-  { id: 12, before: faceResult2Before.url, after: faceResult2After.url, label: "Facial Lifting", name: "Margaret", age: 41, objectPosition: "center center" },
-  { id: 13, before: faceResult3Before.url, after: faceResult3After.url, label: "Wrinkle Reduction", name: "Elaine", age: 62, objectPosition: "center center" },
-  { id: 14, before: faceResult4Before.url, after: faceResult4After.url, label: "Skin Tightening", name: "Brianna", age: 34, objectPosition: "center center" },
-  { id: 15, before: faceResult5Before.url, after: faceResult5After.url, label: "Neck Rejuvenation", name: "Rosalind", age: 42, objectPosition: "center center" },
+  { id: 11, before: faceResult1Before.url, after: faceResult1After.url, label: "Facial Rejuvenation", name: "Catherine", age: 38, objectPosition: "center 35%" },
+  { id: 12, before: faceResult2Before.url, after: faceResult2After.url, label: "Facial Lifting", name: "Margaret", age: 41, objectPosition: "center 35%" },
+  { id: 13, before: faceResult3Before.url, after: faceResult3After.url, label: "Wrinkle Reduction", name: "Elaine", age: 62, objectPosition: "center 50%" },
+  { id: 14, before: faceResult4Before.url, after: faceResult4After.url, label: "Skin Tightening", name: "Brianna", age: 34, objectPosition: "center 32%" },
+  { id: 15, before: faceResult5Before.url, after: faceResult5After.url, label: "Neck Rejuvenation", name: "Rosalind", age: 42, objectPosition: "center 25%" },
 ];
 
 export function Results() {
