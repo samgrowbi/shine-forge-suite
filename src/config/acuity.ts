@@ -24,3 +24,35 @@ export const TREATMENT_DETAILS_FALLBACK = {
   color: "#8B5CF6",
   image: treatmentImage,
 };
+
+// ---- Deposit checkout (Acuity-hosted) ----
+// Acuity's API bookings (admin: true) skip payment, so treatments that require a
+// deposit hand the client off to Acuity's own scheduler for the selected slot,
+// where the Square deposit is collected before the appointment is confirmed.
+export const ACUITY_SCHEDULER_HASH = "ce401de1";
+export const DEPOSIT_AMOUNT = "20.00";
+
+export function buildAcuityCheckoutUrl(opts: {
+  appointmentTypeId: string;
+  calendarId: string;
+  datetime: string; // ISO string from Acuity, e.g. 2026-10-13T17:30:00-0700
+  firstName?: string;
+  lastName?: string;
+  email?: string;
+  phone?: string;
+}): string {
+  const { appointmentTypeId, calendarId, datetime } = opts;
+  const base =
+    `https://app.acuityscheduling.com/schedule/${ACUITY_SCHEDULER_HASH}` +
+    `/appointment/${appointmentTypeId}` +
+    `/calendar/${calendarId}` +
+    `/datetime/${encodeURIComponent(datetime)}`;
+  const params = new URLSearchParams();
+  params.append("appointmentTypeIds[]", appointmentTypeId);
+  // Prefill client details so they don't retype them on Acuity
+  if (opts.firstName) params.set("firstName", opts.firstName);
+  if (opts.lastName) params.set("lastName", opts.lastName);
+  if (opts.email) params.set("email", opts.email);
+  if (opts.phone) params.set("phone", opts.phone);
+  return `${base}?${params.toString()}`;
+}
