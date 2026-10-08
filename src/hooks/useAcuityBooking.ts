@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { 
   DEFAULT_ACUITY_TIMEZONE,
   TREATMENT_IMAGE, 
-  buildAcuityCheckoutUrl,
 } from "@/config/acuity";
+import type { DepositCardHandle } from "@/components/booking/DepositCardForm";
 import { TreatmentConfig } from "@/config/treatments";
 import { IntakeForm } from "@/components/booking/IntakeFormField";
 import { formatDateOnly, parseDateOnly } from "@/lib/dateOnly";
@@ -178,6 +178,10 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
 
   const appointmentTypeID = treatmentConfig?.appointmentTypeId || "95406341";
   const calendarID = treatmentConfig?.calendarId || "14112013";
+
+  // Deposit flow: card is collected on-page (Square) and charged when the booking is created
+  const requiresDeposit = !!treatmentConfig?.requiresDeposit;
+  const depositCardRef = useRef<DepositCardHandle | null>(null);
 
   const filterIntakeForms = (forms: IntakeForm[]) =>
     forms
@@ -418,28 +422,47 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
           value,
         }));
 
+      const bookingPayload: Record<string, unknown> = {
+        datetime: selectedTime,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone: `+1${formData.phone}`,
+        appointmentTypeID,
+        // Don't pass calendarID - let Acuity auto-select based on appointment type
+        fields,
+      };
+
+      // Deposit treatments: tokenize the card with Square and book + charge in one call
+      let endpoint = "acuity-book";
+      if (requiresDeposit) {
+        if (!depositCardRef.current) {
+          throw new Error("The payment form is still loading. Please try again in a moment.");
+        }
+        const { token, verificationToken } = await depositCardRef.current.tokenize();
+        bookingPayload.sourceId = token;
+        bookingPayload.verificationToken = verificationToken;
+        bookingPayload.idempotencyKey =
+          crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+        endpoint = "square-deposit-book";
+      }
+
       const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/acuity-book`,
+        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/${endpoint}`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            datetime: selectedTime,
-            firstName: formData.firstName,
-            lastName: formData.lastName,
-            email: formData.email,
-            phone: `+1${formData.phone}`,
-            appointmentTypeID,
-            // Don't pass calendarID - let Acuity auto-select based on appointment type
-            fields,
-          }),
+          body: JSON.stringify(bookingPayload),
         }
       );
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
+        if (response.status === 402 && errorData?.error) {
+          throw new Error(errorData.error);
+        }
         if (response.status === 403) {
           throw new Error(
             "This time slot is no longer available. Please pick a different time or contact us for help."
@@ -512,46 +535,6 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
     },
   });
 
-  // ---- Deposit flow: hand off to Acuity-hosted checkout for the selected slot ----
-  const requiresDeposit = !!treatmentConfig?.requiresDeposit;
-  const [isRedirectingToDeposit, setIsRedirectingToDeposit] = useState(false);
-
-  // If the client comes back from Acuity via the Back button (bfcache), re-enable the form
-  useEffect(() => {
-    const onPageShow = () => setIsRedirectingToDeposit(false);
-    window.addEventListener("pageshow", onPageShow);
-    return () => window.removeEventListener("pageshow", onPageShow);
-  }, []);
-
-  const redirectToDeposit = async () => {
-    if (!selectedTime) return;
-    setIsRedirectingToDeposit(true);
-    track(Events.BookingSubmitted, {
-      treatment: treatmentConfig?.slug,
-      flow: "deposit_redirect",
-    });
-    if (leadDebounceRef.current) clearTimeout(leadDebounceRef.current);
-    // Save the lead before leaving the site (status shows they reached checkout)
-    await upsertLead({ status: "deposit_pending", selected_datetime: selectedTime });
-    try {
-      sessionStorage.setItem(
-        "thankYouReturnPath",
-        window.location.pathname + window.location.search + window.location.hash
-      );
-    } catch {
-      // ignore storage errors
-    }
-    window.location.href = buildAcuityCheckoutUrl({
-      appointmentTypeId: appointmentTypeID,
-      calendarId: calendarID,
-      datetime: selectedTime,
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      phone: formData.phone ? `+1${formData.phone}` : undefined,
-    });
-  };
-
   const goToStep = (step: BookingStep) => {
     setCurrentStep(step);
   };
@@ -584,11 +567,7 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
         if (selectedDate && selectedTime) setCurrentStep("details");
         break;
       case "details":
-        if (requiresDeposit) {
-          redirectToDeposit();
-        } else {
-          bookingMutation.mutate();
-        }
+        bookingMutation.mutate();
         break;
     }
   };
@@ -667,8 +646,9 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
     isLoadingTimes: timesQuery.isLoading,
     intakeForms: filteredForms,
     isLoadingForms: formsQuery.isLoading,
-    isBooking: bookingMutation.isPending || isRedirectingToDeposit,
+    isBooking: bookingMutation.isPending,
     requiresDeposit,
+    depositCardRef,
     bookingError: bookingMutation.error?.message,
     goToStep,
     goBack,
