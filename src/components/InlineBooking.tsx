@@ -1,3 +1,4 @@
+import { DEPOSIT_AMOUNT } from "@/config/acuity";
 import { Card } from "./ui/card";
 import { Shield, ArrowLeft, Loader2 } from "lucide-react";
 import { motion } from "motion/react";
@@ -46,6 +47,11 @@ export function InlineBooking() {
         <h3 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif text-gray-900 mb-3 lg:mb-5 font-normal tracking-tight leading-[1.05]">
           Secure Your Spot <span className="text-pink-500 font-semibold">in 30 Seconds</span>
         </h3>
+        {treatment.requiresDeposit && (
+          <p className="text-sm lg:text-base text-gray-600">
+            A ${DEPOSIT_AMOUNT} deposit is required to confirm your appointment.
+          </p>
+        )}
         {!treatment.requiresDeposit && (
         <div className="inline-flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-1.5 lg:py-2 bg-green-50 border border-green-200 rounded-full">
           <Shield className="h-3.5 w-3.5 lg:h-4 lg:w-4 text-green-600" />
@@ -155,10 +161,10 @@ export function InlineBooking() {
               {booking.isBooking ? (
                 <>
                   <Loader2 className="mr-2 h-3.5 w-3.5 lg:h-4 lg:w-4 animate-spin" />
-                  Booking...
+                  {booking.requiresDeposit ? "Opening secure checkout..." : "Booking..."}
                 </>
               ) : booking.currentStep === "details" ? (
-                "Confirm Booking"
+                booking.requiresDeposit ? `Continue to $${DEPOSIT_AMOUNT} Deposit` : "Confirm Booking"
               ) : (
                 "Continue"
               )}
@@ -169,7 +175,7 @@ export function InlineBooking() {
               <span className="text-gray-300">·</span>
               <span>Cancel Anytime</span>
               <span className="text-gray-300">·</span>
-              <span>No Charge Today</span>
+              <span>{booking.requiresDeposit ? `$${DEPOSIT_AMOUNT} deposit secures your spot` : "No Charge Today"}</span>
             </p>
           </div>
         )}
