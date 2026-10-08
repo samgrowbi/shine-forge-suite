@@ -32,7 +32,7 @@ const BookLedC = () => {
             <div>
               <h1 className="text-xl font-serif text-foreground font-medium">Book Your Appointment</h1>
               <p className="text-sm text-muted-foreground">
-                {t.label} - $20.00 deposit secures your spot
+                {t.label} - pay a $20.00 deposit or the full $79.99
               </p>
             </div>
           </div>
