@@ -343,3 +343,10 @@ export const LED_B_TREATMENT: TreatmentConfig = {
   slug: "broad",
   appointmentTypeId: "98730062",
 };
+
+// Duplicate of LED treatment at /c - identical copy, different appointment type
+export const LED_C_TREATMENT: TreatmentConfig = {
+  ...LED_TREATMENT,
+  slug: "c",
+  appointmentTypeId: "99210631",
+};

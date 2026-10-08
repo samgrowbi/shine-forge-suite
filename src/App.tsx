@@ -10,6 +10,8 @@ import ThankYou from "./pages/ThankYou";
 import BookLedCryo from "./pages/BookLedCryo";
 import BookLed from "./pages/BookLed";
 import BookLedB from "./pages/BookLedB";
+import BookLedC from "./pages/BookLedC";
+import LedC from "./pages/LedC";
 import BookBodySculpting from "./pages/BookBodySculpting";
 import BookInstantLift from "./pages/BookInstantLift";
 import LedCryo from "./pages/LedCryo";
@@ -31,6 +33,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/broad" element={<LedB />} />
           <Route path="/b" element={<Navigate to="/broad" replace />} />
+          <Route path="/c" element={<LedC />} />
           <Route path="/instant-lift" element={<InstantLift />} />
           <Route path="/led" element={<Navigate to="/" replace />} />
           <Route path="/led-cryo" element={<LedCryo />} />
@@ -38,6 +41,7 @@ const App = () => (
           <Route path="/book/led" element={<BookLed />} />
           <Route path="/book/broad" element={<BookLedB />} />
           <Route path="/book/b" element={<Navigate to="/book/broad" replace />} />
+          <Route path="/book/c" element={<BookLedC />} />
           <Route path="/book/instant-lift" element={<BookInstantLift />} />
           <Route path="/book/led-cryo" element={<BookLedCryo />} />
           <Route path="/book/body-sculpting" element={<BookBodySculpting />} />

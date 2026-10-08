@@ -1,6 +1,7 @@
 import {
   LED_TREATMENT,
   LED_B_TREATMENT,
+  LED_C_TREATMENT,
   LED_CRYO_TREATMENT,
   BODY_SCULPTING_TREATMENT,
   INSTANT_LIFT_TREATMENT,
@@ -10,6 +11,7 @@ import {
 const treatments: Record<string, TreatmentConfig> = {
   led: LED_TREATMENT,
   broad: LED_B_TREATMENT,
+  c: LED_C_TREATMENT,
   "instant-lift": INSTANT_LIFT_TREATMENT,
   "led-cryo": LED_CRYO_TREATMENT,
   "body-sculpting": BODY_SCULPTING_TREATMENT,
