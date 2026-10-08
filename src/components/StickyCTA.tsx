@@ -92,7 +92,9 @@ export function StickyCTA({ onBookingClick }: StickyCTAProps) {
         >
           <div className="container mx-auto px-5 py-2 md:py-4">
             <div className="flex flex-col items-center justify-center gap-1">
-              <p className="text-xs md:text-sm text-gray-600">100% Risk-Free, No Deposit Required</p>
+              {!treatment.requiresDeposit && (
+                <p className="text-xs md:text-sm text-gray-600">100% Risk-Free, No Deposit Required</p>
+              )}
               <Button 
                 variant="cta" 
                 size="cta" 

@@ -46,10 +46,12 @@ export function InlineBooking() {
         <h3 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-serif text-gray-900 mb-3 lg:mb-5 font-normal tracking-tight leading-[1.05]">
           Secure Your Spot <span className="text-pink-500 font-semibold">in 30 Seconds</span>
         </h3>
+        {!treatment.requiresDeposit && (
         <div className="inline-flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-1.5 lg:py-2 bg-green-50 border border-green-200 rounded-full">
           <Shield className="h-3.5 w-3.5 lg:h-4 lg:w-4 text-green-600" />
           <span className="text-xs lg:text-sm font-medium text-green-700 tracking-wide uppercase">100% Risk-Free · No Deposit Required</span>
         </div>
+        )}
       </div>
 
       {/* Booking Card */}
