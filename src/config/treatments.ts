@@ -66,6 +66,8 @@ export interface TreatmentConfig {
   clientReviews?: { id: number; name: string; image: string; timeAgo: string; rating: number; review: string }[];
   /** About section video URL override */
   aboutVideoUrl?: string;
+  /** Set when a deposit is required - hides all "No Deposit Required" messaging */
+  requiresDeposit?: boolean;
   /** Whether to hide the Expert Opinion section */
   hideExpertOpinion?: boolean;
   /** Problem/Solution section overrides */
@@ -348,5 +350,6 @@ export const LED_B_TREATMENT: TreatmentConfig = {
 export const LED_C_TREATMENT: TreatmentConfig = {
   ...LED_TREATMENT,
   slug: "c",
+  requiresDeposit: true,
   appointmentTypeId: "99210631",
 };
