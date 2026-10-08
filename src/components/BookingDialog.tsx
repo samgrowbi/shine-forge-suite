@@ -1,3 +1,4 @@
+import { DEPOSIT_AMOUNT } from "@/config/acuity";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "./ui/dialog";
 import { Calendar, ArrowLeft, Loader2 } from "lucide-react";
 import { Button } from "./ui/button";
@@ -142,10 +143,10 @@ export function BookingDialog({ isOpen, onClose }: BookingDialogProps) {
               {booking.isBooking ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Booking...
+                  {booking.requiresDeposit ? "Opening secure checkout..." : "Booking..."}
                 </>
               ) : booking.currentStep === "details" ? (
-                "Confirm Booking"
+                booking.requiresDeposit ? `Continue to $${DEPOSIT_AMOUNT} Deposit` : "Confirm Booking"
               ) : (
                 "Continue"
               )}
