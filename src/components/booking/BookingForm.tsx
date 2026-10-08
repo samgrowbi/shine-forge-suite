@@ -4,6 +4,7 @@ import { Label } from "@/components/ui/label";
 import { BookingFormData } from "@/hooks/useAcuityBooking";
 import { IntakeFormField, IntakeForm } from "./IntakeFormField";
 import { Loader2 } from "lucide-react";
+import { DepositCardForm, DepositCardHandle } from "./DepositCardForm";
 
 interface BookingFormProps {
   formData: BookingFormData;
@@ -13,6 +14,9 @@ interface BookingFormProps {
   onIntakeFieldChange: (fieldId: number, value: string) => void;
   isLoadingForms: boolean;
   isSubmitting: boolean;
+  /** When set, shows the Square card form for the deposit */
+  depositAmount?: string;
+  depositCardRef?: React.Ref<DepositCardHandle>;
 }
 
 interface FormErrors {
@@ -52,6 +56,8 @@ export function BookingForm({
   onIntakeFieldChange,
   isLoadingForms,
   isSubmitting,
+  depositAmount,
+  depositCardRef,
 }: BookingFormProps) {
   const [errors, setErrors] = useState<FormErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
@@ -248,6 +254,20 @@ export function BookingForm({
             </div>
           </div>
         ))
+      )}
+
+      {depositAmount && (
+        <DepositCardForm
+          ref={depositCardRef}
+          amount={depositAmount}
+          disabled={isSubmitting}
+          billing={{
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            phone: formData.phone ? `+1${formData.phone}` : undefined,
+          }}
+        />
       )}
     </div>
   );
