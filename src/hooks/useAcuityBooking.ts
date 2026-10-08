@@ -623,8 +623,6 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
         if (formData.phone.length < 10 || formData.phone.startsWith("1")) {
           return false;
         }
-        // Deposit flow: Acuity's checkout collects intake forms, so skip them here
-        if (requiresDeposit) return true;
         // Check required intake fields (only from filtered forms)
         for (const form of filteredForms) {
           for (const field of form.fields) {
@@ -667,7 +665,7 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
     isLoadingDates: availabilityQuery.isLoading && nextMonthAvailabilityQuery.isLoading,
     availableTimes: timesQuery.data || [],
     isLoadingTimes: timesQuery.isLoading,
-    intakeForms: requiresDeposit ? [] : filteredForms,
+    intakeForms: filteredForms,
     isLoadingForms: formsQuery.isLoading,
     isBooking: bookingMutation.isPending || isRedirectingToDeposit,
     requiresDeposit,
