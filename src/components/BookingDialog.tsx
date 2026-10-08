@@ -125,6 +125,8 @@ export function BookingDialog({ isOpen, onClose }: BookingDialogProps) {
               onIntakeFieldChange={booking.updateIntakeField}
               isLoadingForms={booking.isLoadingForms}
               isSubmitting={booking.isBooking}
+              depositAmount={booking.requiresDeposit ? DEPOSIT_AMOUNT : undefined}
+              depositCardRef={booking.depositCardRef}
             />
           )}
         </div>
@@ -143,10 +145,10 @@ export function BookingDialog({ isOpen, onClose }: BookingDialogProps) {
               {booking.isBooking ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  {booking.requiresDeposit ? "Opening secure checkout..." : "Booking..."}
+                  {booking.requiresDeposit ? "Processing payment..." : "Booking..."}
                 </>
               ) : booking.currentStep === "details" ? (
-                booking.requiresDeposit ? `Continue to $${DEPOSIT_AMOUNT} Deposit` : "Confirm Booking"
+                booking.requiresDeposit ? `Pay $${DEPOSIT_AMOUNT} Deposit & Book` : "Confirm Booking"
               ) : (
                 "Continue"
               )}
