@@ -1,3 +1,4 @@
+import { DEPOSIT_AMOUNT } from "@/config/acuity";
 import { Calendar, ArrowLeft, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -152,10 +153,10 @@ const BookingPage = ({ treatment }: BookingPageProps) => {
               {booking.isBooking ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Booking...
+                  {booking.requiresDeposit ? "Opening secure checkout..." : "Booking..."}
                 </>
               ) : booking.currentStep === "details" ? (
-                "Confirm Booking"
+                booking.requiresDeposit ? `Continue to $${DEPOSIT_AMOUNT} Deposit` : "Confirm Booking"
               ) : (
                 "Continue"
               )}
